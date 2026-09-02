@@ -212,6 +212,9 @@ backend:
       - working: true
         agent: "testing"
         comment: "Minor: GET /api/chapter-bank/neet-physics-units-and-measurements endpoint working correctly. Returns 5 questions (not the expected ~42). This is a data content issue, not a functionality issue. The endpoint itself works correctly."
+      - working: true
+        agent: "testing"
+        comment: "GET /api/chapter-bank/neet-physics-units-and-measurements endpoint fully verified. Returns total_questions=9 with exactly 2 sections: 'Unit of Physical Quantities' (5 questions) and 'Significant Figures' (4 questions). Significant Figures section verified with question_no 1-4, answers d/c/d/a, all questions have question_image (sf_q1_question.png pattern), 4 option_images each, solution_image, and header_in_image=true flag. All requirements met."
 
   - task: "Chapter images serving endpoint"
     implemented: true
@@ -224,6 +227,9 @@ backend:
       - working: true
         agent: "testing"
         comment: "GET /api/chapter-image/{filename} endpoint working correctly. Successfully serves PNG images from backend/chapter_images directory with proper content-type headers and caching."
+      - working: true
+        agent: "testing"
+        comment: "GET /api/chapter-image/sf_q3_question.png verified. Returns HTTP 200 with image/png content-type and 117703 bytes of image data. Image serving working correctly."
 
   - task: "Quiz submission and scoring endpoint"
     implemented: true
@@ -337,3 +343,5 @@ test_plan:
 agent_communication:
   - agent: "testing"
     message: "Completed comprehensive backend testing. All 17 core endpoints tested and working correctly. Only minor data content issue found (units-and-measurements chapter bank has 5 questions instead of expected 42, but endpoint functionality is correct). CRUD operations verified. Quiz submission and scoring working. Chapter images serving correctly. MongoDB integration working. All tests passed except for one minor data content issue."
+  - agent: "testing"
+    message: "Quick verification completed for units-and-measurements chapter bank. Confirmed total_questions=9 with 2 sections (Unit of Physical Quantities: 5 questions, Significant Figures: 4 questions). Significant Figures section fully verified with correct structure: question_no 1-4, answers d/c/d/a, all image fields present (question_image, 4 option_images, solution_image), and header_in_image=true. Chapter image endpoint verified serving sf_q3_question.png correctly (HTTP 200, image/png, 117KB). All requirements met."
