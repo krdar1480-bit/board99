@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getChapterBank, chapterImageUrl } from "@/lib/api";
 import { Header } from "@/components/Header";
-import { Atom, Loader2, CheckCircle2, Eye, ChevronRight, ChevronLeft, Layers, Maximize2 } from "lucide-react";
+import { Atom, Loader2, CheckCircle2, Eye, ChevronRight, ChevronLeft, Layers } from "lucide-react";
 import ImageZoomModal from "@/components/ImageZoomModal";
 
 const LETTERS = ["a", "b", "c", "d"];
@@ -144,22 +144,12 @@ export default function ChapterPractice() {
                   if (q.question_image) {
                     return (
                       <div key={q.question_no} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                        <div className="mb-3 flex flex-wrap items-center gap-2">
-                          {!q.header_in_image && (
-                            <>
-                              <span className="flex h-6 min-w-6 items-center justify-center rounded-md bg-blue-600 px-1.5 text-xs font-extrabold text-white">{q.question_no}</span>
-                              {q.year && <span className="rounded-md border border-slate-200 bg-slate-50 px-2 py-0.5 text-[11px] font-bold text-slate-600">{q.year}</span>}
-                            </>
-                          )}
-                          <button
-                            type="button"
-                            onClick={() => setZoom({ src: chapterImageUrl(q.question_image), alt: `Question ${q.question_no}` })}
-                            className="ml-auto flex items-center gap-1 rounded-md border border-slate-200 bg-white px-2 py-1 text-[11px] font-bold text-slate-600 transition-all hover:border-blue-300 hover:text-blue-600"
-                            title="Zoom question"
-                          >
-                            <Maximize2 className="h-3.5 w-3.5" /> Zoom
-                          </button>
-                        </div>
+                        {!q.header_in_image && (
+                          <div className="mb-3 flex flex-wrap items-center gap-2">
+                            <span className="flex h-6 min-w-6 items-center justify-center rounded-md bg-blue-600 px-1.5 text-xs font-extrabold text-white">{q.question_no}</span>
+                            {q.year && <span className="rounded-md border border-slate-200 bg-slate-50 px-2 py-0.5 text-[11px] font-bold text-slate-600">{q.year}</span>}
+                          </div>
+                        )}
 
                         <button
                           type="button"
@@ -218,16 +208,6 @@ export default function ChapterPractice() {
                                 <span className={`ml-1 rounded px-1.5 py-0.5 text-[10px] ${pick === q.answer ? "bg-emerald-100 text-emerald-700" : "bg-rose-100 text-rose-600"}`}>
                                   {pick === q.answer ? "You got it right" : `You chose ${pick.toUpperCase()}`}
                                 </span>
-                              )}
-                              {q.solution_image && (
-                                <button
-                                  type="button"
-                                  onClick={() => setZoom({ src: chapterImageUrl(q.solution_image), alt: `Solution ${q.question_no}` })}
-                                  className="ml-auto flex items-center gap-1 rounded-md border border-emerald-200 bg-white px-2 py-1 text-[11px] font-bold normal-case text-emerald-700 transition-all hover:border-emerald-400"
-                                  title="Zoom solution"
-                                >
-                                  <Maximize2 className="h-3.5 w-3.5" /> Zoom
-                                </button>
                               )}
                             </p>
                             {q.solution_image ? (
