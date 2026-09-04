@@ -12,6 +12,12 @@ const CLASSES = [
 // Chapters that stay unlocked in addition to the first two of each list.
 const EXTRA_FREE = new Set(["Motion in a Straight Line", "Matrices"]);
 
+// Chapters that are ALWAYS locked (in every exam), regardless of position.
+const FORCE_LOCK = new Set(["Electrostatic Potential and Capacitance", "Electrochemistry"]);
+
+// Subjects where every chapter is locked.
+const LOCK_ALL_SUBJECTS = new Set(["biology"]);
+
 // Chapter names that have a ready PYQ practice bank -> maps to backend bank key.
 // Keyed by `${examId}:${subjectId}:${chapterName}`.
 const CHAPTER_BANKS = {
@@ -20,6 +26,10 @@ const CHAPTER_BANKS = {
   "neet:physics:Electric Charges and Fields": "neet-physics-electric-charges-and-fields",
   "neet:chemistry:Some Basic Concepts of Chemistry": "neet-chemistry-some-basic-concepts-of-chemistry",
   "neet:chemistry:Solutions": "neet-chemistry-solutions",
+  "neet:math:Basic Maths": "neet-math-basic-maths",
+  "neet:math:Set and Relation": "neet-math-set-and-relation",
+  "neet:math:Matrices": "neet-math-matrices",
+  "neet:math:Determinants": "neet-math-determinants",
 };
 
 export default function ExamChapters() {
@@ -43,7 +53,7 @@ export default function ExamChapters() {
           </div>
           <div className="space-y-2.5">
             {chapters.map((name, i) => {
-              const locked = i >= 2 && !EXTRA_FREE.has(name);
+              const locked = LOCK_ALL_SUBJECTS.has(subjectId) || FORCE_LOCK.has(name) || (i >= 2 && !EXTRA_FREE.has(name));
               const bankKey = CHAPTER_BANKS[`${examId}:${subjectId}:${name}`];
               const clickable = !locked && !!bankKey;
               return (
