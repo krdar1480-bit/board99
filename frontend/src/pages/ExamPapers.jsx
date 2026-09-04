@@ -162,35 +162,36 @@ export default function ExamPapers() {
                         </span>
                       )}
                     </div>
-                    {!locked && (
-                      <div className="mt-3 flex gap-2">
+                    <div className={`mt-3 flex gap-2 ${locked ? "pointer-events-none select-none blur-[2px] opacity-80" : ""}`} aria-hidden={locked ? "true" : undefined}>
+                      <button
+                        tabIndex={locked ? -1 : 0}
+                        onClick={() => (locked ? null : p.quiz ? navigate(`/exam/${examId}/quiz/${p.quiz}`) : soon())}
+                        className="flex-1 rounded-lg bg-[#5B50E6] py-2 text-sm font-bold text-white transition-all hover:bg-[#4a41c9]"
+                      >
+                        Take Test
+                      </button>
+                      {p.solutions && !locked ? (
                         <button
-                          onClick={() => p.quiz ? navigate(`/exam/${examId}/quiz/${p.quiz}`) : soon()}
-                          className="flex-1 rounded-lg bg-[#5B50E6] py-2 text-sm font-bold text-white transition-all hover:bg-[#4a41c9]"
+                          onClick={() => navigate(`/exam/${examId}/paper/${p.solutions}/solutions`)}
+                          className="flex-1 rounded-lg border border-indigo-200 bg-indigo-50 py-2 text-sm font-bold text-[#5B50E6] transition-all hover:bg-indigo-100"
                         >
-                          Take Test
+                          View Solutions
                         </button>
-                        {p.solutions ? (
-                          <button
-                            onClick={() => navigate(`/exam/${examId}/paper/${p.solutions}/solutions`)}
-                            className="flex-1 rounded-lg border border-indigo-200 bg-indigo-50 py-2 text-sm font-bold text-[#5B50E6] transition-all hover:bg-indigo-100"
-                          >
-                            View Solutions
-                          </button>
-                        ) : (
-                          <button
-                            onClick={soon}
-                            className="flex-1 rounded-lg border border-indigo-200 bg-indigo-50 py-2 text-sm font-bold text-[#5B50E6] transition-all hover:bg-indigo-100"
-                          >
-                            Practice
-                          </button>
-                        )}
-                      </div>
-                    )}
-                    <div className="mt-2">
+                      ) : (
+                        <button
+                          tabIndex={locked ? -1 : 0}
+                          onClick={() => (locked ? null : soon())}
+                          className="flex-1 rounded-lg border border-indigo-200 bg-indigo-50 py-2 text-sm font-bold text-[#5B50E6] transition-all hover:bg-indigo-100"
+                        >
+                          {locked ? "View Solutions" : "Practice"}
+                        </button>
+                      )}
+                    </div>
+                    <div className={`mt-2 ${locked ? "pointer-events-none select-none blur-[2px] opacity-80" : ""}`} aria-hidden={locked ? "true" : undefined}>
                       <button
                         data-testid={`analytics-${g.year}-${i}`}
-                        onClick={soon}
+                        tabIndex={locked ? -1 : 0}
+                        onClick={() => (locked ? null : soon())}
                         className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#312E81] py-2 text-sm font-bold text-white transition-all hover:bg-[#3730A3]"
                       >
                         <BarChart3 className="h-4 w-4" />
