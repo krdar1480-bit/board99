@@ -39,7 +39,7 @@ export const EXAM_CHAPTERS = {
   },
   math: {
     "11": [
-      "Sets", "Relations and Functions", "Trigonometric Functions",
+      "Basic Maths", "Set and Relation", "Trigonometric Functions",
       "Complex Numbers and Quadratic Equations", "Linear Inequalities", "Permutations and Combinations",
       "Binomial Theorem", "Sequences and Series", "Straight Lines", "Conic Sections",
       "Introduction to Three Dimensional Geometry", "Limits and Derivatives", "Statistics", "Probability",
