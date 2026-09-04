@@ -17,6 +17,9 @@ const EXTRA_FREE = new Set(["Motion in a Straight Line", "Matrices"]);
 const CHAPTER_BANKS = {
   "neet:physics:Units and Measurements": "neet-physics-units-and-measurements",
   "neet:physics:Motion in a Straight Line": "neet-physics-motion-in-a-straight-line",
+  "neet:physics:Electric Charges and Fields": "neet-physics-electric-charges-and-fields",
+  "neet:chemistry:Some Basic Concepts of Chemistry": "neet-chemistry-some-basic-concepts-of-chemistry",
+  "neet:chemistry:Solutions": "neet-chemistry-solutions",
 };
 
 export default function ExamChapters() {
