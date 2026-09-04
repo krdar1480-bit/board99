@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import { Stethoscope, FlaskConical, FileText, Lock, BarChart3, ArrowRight } from "lucide-react";
 
 const EXAM_META = {
-  neet: { name: "NEET", Icon: Stethoscope, langs: ["English", "हिन्दी"] },
+  neet: { name: "NEET", Icon: Stethoscope, langs: ["English"] },
   kcet: { name: "KCET", Icon: FlaskConical, langs: ["English"] },
 };
 
