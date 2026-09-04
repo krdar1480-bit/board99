@@ -15,6 +15,9 @@ const EXTRA_FREE = new Set(["Motion in a Straight Line", "Matrices"]);
 // Chapters that are ALWAYS locked (in every exam), regardless of position.
 const FORCE_LOCK = new Set(["Electrostatic Potential and Capacitance", "Electrochemistry"]);
 
+// Chapters locked only in a specific exam. Keyed by `${examId}:${chapterName}`.
+const FORCE_LOCK_BY_EXAM = new Set(["neet:Structure of Atom"]);
+
 // Subjects where every chapter is locked.
 const LOCK_ALL_SUBJECTS = new Set(["biology"]);
 
@@ -53,7 +56,7 @@ export default function ExamChapters() {
           </div>
           <div className="space-y-2.5">
             {chapters.map((name, i) => {
-              const locked = LOCK_ALL_SUBJECTS.has(subjectId) || FORCE_LOCK.has(name) || (i >= 2 && !EXTRA_FREE.has(name));
+              const locked = LOCK_ALL_SUBJECTS.has(subjectId) || FORCE_LOCK.has(name) || FORCE_LOCK_BY_EXAM.has(`${examId}:${name}`) || (i >= 2 && !EXTRA_FREE.has(name));
               const bankKey = CHAPTER_BANKS[`${examId}:${subjectId}:${name}`];
               const clickable = !locked && !!bankKey;
               return (
