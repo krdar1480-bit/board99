@@ -33,6 +33,18 @@ const CHAPTER_BANKS = {
   "neet:math:Set and Relation": "neet-math-set-and-relation",
   "neet:math:Matrices": "neet-math-matrices",
   "neet:math:Determinants": "neet-math-determinants",
+  "kcet:math:Basic Maths": "neet-math-basic-maths",
+  "kcet:math:Set and Relation": "neet-math-set-and-relation",
+  "kcet:math:Matrices": "neet-math-matrices",
+  "kcet:math:Determinants": "neet-math-determinants",
+  "jee-main:math:Basic Maths": "neet-math-basic-maths",
+  "jee-main:math:Set and Relation": "neet-math-set-and-relation",
+  "jee-main:math:Matrices": "neet-math-matrices",
+  "jee-main:math:Determinants": "neet-math-determinants",
+  "jee-adv:math:Basic Maths": "neet-math-basic-maths",
+  "jee-adv:math:Set and Relation": "neet-math-set-and-relation",
+  "jee-adv:math:Matrices": "neet-math-matrices",
+  "jee-adv:math:Determinants": "neet-math-determinants",
 };
 
 export default function ExamChapters() {
