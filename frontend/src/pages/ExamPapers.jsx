@@ -9,6 +9,9 @@ const EXAM_META = {
   kcet: { name: "KCET", Icon: FlaskConical, langs: ["English"] },
 };
 
+// Only these papers are unlocked; every other paper is locked.
+const UNLOCKED_PAPERS = new Set(["RE-NEET 2026", "KCET 2026"]);
+
 const PAPERS_BY_EXAM = {
   neet: [
     { year: 2026, items: [
@@ -127,12 +130,13 @@ export default function ExamPapers() {
 
         <div className="space-y-6">
           {groups.map((g) => {
-            const locked = g.year <= 2023;
             return (
             <section key={g.year} data-testid={`year-group-${g.year}`}>
               <h2 className="mb-2.5 text-sm font-extrabold text-slate-500">{g.year}</h2>
               <div className="space-y-3">
-                {g.items.map((p, i) => (
+                {g.items.map((p, i) => {
+                  const locked = !UNLOCKED_PAPERS.has(p.name);
+                  return (
                   <div
                     key={i}
                     data-testid={`paper-${g.year}-${i}`}
@@ -195,7 +199,8 @@ export default function ExamPapers() {
                       </button>
                     </div>
                   </div>
-                ))}
+                  );
+                })}
               </div>
             </section>
             );
