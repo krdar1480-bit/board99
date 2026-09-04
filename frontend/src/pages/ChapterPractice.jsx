@@ -117,6 +117,16 @@ export default function ChapterPractice() {
             const working = activeTag === "All" ? sorted : sorted.filter((q) => q.similarity_tag === activeTag);
             const total = working.length;
             const idx = Math.min(curIdx, total - 1);
+            if (total === 0) {
+              return (
+                <section key={sec.topic}>
+                  <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center shadow-sm">
+                    <p className="text-sm font-extrabold text-slate-700">Questions coming soon</p>
+                    <p className="mt-1 text-xs font-medium text-slate-400">This topic will be available shortly.</p>
+                  </div>
+                </section>
+              );
+            }
             return (
             <section key={sec.topic}>
 
