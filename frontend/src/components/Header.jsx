@@ -9,10 +9,18 @@ export const Header = ({ showBack = false, title, Icon, bgClass = "bg-blue-600",
   // Route-based back: go up exactly one level (never re-open a viewed PDF).
   const goBack = () => {
     const parts = (location.pathname || "").split("/").filter(Boolean);
-    // /exam/:id[/:subject/chapters] -> back to exam dashboard, or home
     if (parts[0] === "exam") {
-      if (parts.length >= 5) { navigate("/" + parts.slice(0, parts.length - 1).join("/")); return; }
-      if (parts.length >= 3) { navigate(`/exam/${parts[1]}`); return; }
+      const examId = parts[1];
+      // ChapterPractice: /exam/:examId/:subjectId/practice/:bankKey -> chapters (class picker)
+      if (parts[3] === "practice") { navigate(`/exam/${examId}/${parts[2]}/chapters`); return; }
+      // Full paper solutions: /exam/:examId/paper/:paperId/solutions -> papers
+      if (parts[2] === "paper") { navigate(`/exam/${examId}/papers`); return; }
+      // Quiz: /exam/:examId/quiz/:quizId -> papers
+      if (parts[2] === "quiz") { navigate(`/exam/${examId}/papers`); return; }
+      // Chapters of a class: /exam/:examId/:subjectId/chapters/:cls -> chapters (class picker)
+      if (parts[3] === "chapters" && parts.length >= 5) { navigate(`/exam/${examId}/${parts[2]}/chapters`); return; }
+      // Class picker (/.../chapters) or /exam/:examId/papers -> exam dashboard
+      if (parts.length >= 3) { navigate(`/exam/${examId}`); return; }
       navigate("/"); return;
     }
     // /subject/:id  -> subject board

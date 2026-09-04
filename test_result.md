@@ -316,6 +316,18 @@ backend:
         comment: "PUT /api/chapter-bank/{bank_key}/question/{question_no} endpoint working correctly. Successfully updates chapter bank questions and persists changes to JSON file."
 
 frontend:
+  - task: "Back-button navigation bug fix"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/components/Header.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "Comprehensive back-button navigation testing completed. All three test scenarios passed: (1) Chapter Practice back flow - navigates from /exam/:examId/:subjectId/practice/:bankKey to /exam/:examId/:subjectId/chapters (class picker) correctly, NO blank screen. (2) Full navigation drill-down and back - tested complete flow Home→NEET→Physics→Class 11→Practice and back navigation at each step, all pages render correctly, NO blank screens. (3) Full Paper solutions back flow - navigates from /exam/:examId/paper/:paperId/solutions to /exam/:examId/papers correctly, NO blank screen. Bug fix verified working in Header.jsx line 15: navigate(`/exam/${examId}/${parts[2]}/chapters`) correctly navigates to class picker without cls parameter."
+  
   - task: "Frontend testing"
     implemented: true
     working: "NA"
@@ -331,8 +343,8 @@ frontend:
 metadata:
   created_by: "testing_agent"
   version: "1.0"
-  test_sequence: 1
-  run_ui: false
+  test_sequence: 2
+  run_ui: true
 
 test_plan:
   current_focus: []
@@ -345,3 +357,5 @@ agent_communication:
     message: "Completed comprehensive backend testing. All 17 core endpoints tested and working correctly. Only minor data content issue found (units-and-measurements chapter bank has 5 questions instead of expected 42, but endpoint functionality is correct). CRUD operations verified. Quiz submission and scoring working. Chapter images serving correctly. MongoDB integration working. All tests passed except for one minor data content issue."
   - agent: "testing"
     message: "Quick verification completed for units-and-measurements chapter bank. Confirmed total_questions=9 with 2 sections (Unit of Physical Quantities: 5 questions, Significant Figures: 4 questions). Significant Figures section fully verified with correct structure: question_no 1-4, answers d/c/d/a, all image fields present (question_image, 4 option_images, solution_image), and header_in_image=true. Chapter image endpoint verified serving sf_q3_question.png correctly (HTTP 200, image/png, 117KB). All requirements met."
+  - agent: "testing"
+    message: "Back-button navigation bug fix testing completed successfully. Tested three comprehensive scenarios: (1) Main bug - Chapter Practice back flow from /exam/neet/physics/practice/neet-physics-units-and-measurements correctly navigates to class picker at /exam/neet/physics/chapters with visible content, NO blank screen. (2) Full drill-down navigation tested step-by-step: Home→NEET→Physics→Class 11→Practice, then back at each level, all pages render correctly, NO blank screens. (3) Full Paper solutions back flow from /exam/neet/paper/reexam-2026/solutions to /exam/neet/papers works correctly, NO blank screen. The bug fix in Header.jsx (line 15) is working as expected. All navigation flows verified with screenshots showing proper page rendering."
