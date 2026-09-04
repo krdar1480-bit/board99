@@ -45,7 +45,7 @@ export const EXAM_CHAPTERS = {
       "Introduction to Three Dimensional Geometry", "Limits and Derivatives", "Statistics", "Probability",
     ],
     "12": [
-      "Relations and Functions", "Inverse Trigonometric Functions", "Matrices", "Determinants",
+      "Matrices", "Determinants", "Relations and Functions", "Inverse Trigonometric Functions",
       "Continuity and Differentiability", "Application of Derivatives", "Integrals",
       "Application of Integrals", "Differential Equations", "Vector Algebra",
       "Three Dimensional Geometry", "Linear Programming", "Probability",
